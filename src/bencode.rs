@@ -230,10 +230,7 @@ pub mod util;
 
 #[inline]
 fn fmt_bytestring(s: &[u8], fmt: &mut fmt::Formatter) -> fmt::Result {
-  match str::from_utf8(s) {
-    Ok(s) => write!(fmt, "s\"{}\"", s),
-    Err(..) => write!(fmt, "s{:?}", s),
-  }
+    write!(fmt, "s\"{}\"", String::from_utf8_lossy(s))
 }
 
 #[derive(PartialEq, Clone, Debug)]
